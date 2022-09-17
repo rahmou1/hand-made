@@ -1,0 +1,29 @@
+{
+  "name": "hand-made",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+   "dev": "nodemon src/index.ts",
+   "build": "tsc",
+   "start": "npm run build && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahmou1/hand-made.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahmou1/hand-made/issues"
+  },
+  "homepage": "https://github.com/rahmou1/hand-made#readme",
+  "devDependencies": {
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1"
+  }
+}
