@@ -2,15 +2,18 @@ import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import RateLimit from 'express-rate-limit';
+import routes from './routes';
 import errorMiddleware from './middleware/error.middleware';
 import config from './config';
-
+import bodyParser from 'body-parser';
 const PORT = config.port || 3000;
 // Create instance server
 
 const app: Application = express();
 //middleware to parse incoming request
 app.use(express.json());
+//To put the database values in body
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //HTTP request logger middleware
 app.use(morgan('common'));
@@ -28,18 +31,13 @@ app.use(
   })
 );
 
+// User routes
+app.use('/', routes);
+
 // add route
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({
     message: 'Welcome sir iam on and ready to serve you 💪',
-  });
-});
-
-// post request
-app.post('/', (req: Request, res: Response) => {
-  res.status(200).json({
-    message: 'Posting',
-    data: req.body,
   });
 });
 
