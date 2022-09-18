@@ -1,3 +1,5 @@
+import config from '../config';
+import jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import UserModel from '../models/user.model';
 
@@ -91,5 +93,30 @@ export const deleteOne = async (
     });
   } catch (error) {
     next(error);
+  }
+};
+
+export const authenticate = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email, password } = req.body;
+    const user = await userModel.authenticate(email, password);
+    const token = jwt.sign({ user }, config.tokenSecret as unknown as string);
+    if (!user) {
+      return res.status(401).json({
+        status: 'false',
+        message: 'the E-mail or Password do not match please try again later',
+      });
+    }
+    return res.json({
+      status: 'true',
+      data: { ...user, token },
+      message: 'User authenticated successfully',
+    });
+  } catch (error) {
+    return next(error);
   }
 };
