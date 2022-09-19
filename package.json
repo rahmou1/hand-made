@@ -9,7 +9,7 @@
     "start": "npm run build && node dist/index.js",
     "test": "npm run build && jasmine",
     "migration:run": "db-migrate up",
-    "migration:reset": "db-migrate down",
+    "migration:down": "db-migrate down",
     "format": "prettier --write src/**/*.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix"
