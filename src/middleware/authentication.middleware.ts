@@ -2,6 +2,7 @@ import config from '../config';
 import jwt from 'jsonwebtoken';
 import Error from '../interfaces/error.enterface';
 import { NextFunction, Request, Response } from 'express';
+import User from '../types/user.type';
 
 const handleUnauthorizedError = (next: NextFunction) => {
   const error: Error = new Error('Login Error: Please try again');
@@ -15,7 +16,7 @@ const validateTokenMiddleware = (
   next: NextFunction
 ) => {
   try {
-    //Get AuthHeader // This to get the user informations
+    //Get AuthHeader // This to get the user information
     const authHeader = req.get('Authorization');
     if (authHeader) {
       const bearer = authHeader.split(' ')[0].toLowerCase();
@@ -25,14 +26,19 @@ const validateTokenMiddleware = (
           token,
           config.tokenSecret as unknown as string
         );
+
+        //! Fucken Critical Mother Fuckers Idiots
+        const user: User = Object.values(decode)[0];
+
         if (decode) {
+          req.body.user = user;
           next();
         } else {
           //Failed to authenticate user
           handleUnauthorizedError(next);
         }
       } else {
-        //Tokeb type not bearer or no token
+        //Token type not bearer or no token
         handleUnauthorizedError(next);
       }
     } else {

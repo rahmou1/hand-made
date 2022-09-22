@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import User from '../types/user.type';
+import { Request } from 'express';
 import db from '../database';
 import config from '../config';
-
 const hashPassword = (password: string) => {
   const salt = parseInt(config.salt as string, 10);
   return bcrypt.hashSync(`${password}${config.pepper}`, salt);
@@ -36,8 +36,11 @@ class UserModel {
   }
 
   //* Get all Users
-  async getMany(): Promise<User[]> {
+  async getMany(req: Request): Promise<User[]> {
     try {
+      // validateTokenMiddleware(req, _res, () => null);
+      const userInfo = req.body.user;
+
       const connection = await db.connect();
       const sql =
         'SELECT id, first_name, last_name, email, mobile, city from users';
@@ -49,8 +52,10 @@ class UserModel {
     }
   }
   //* Get specific User
-  async getOne(id: string): Promise<User> {
+  async getOne(id: string, user: User): Promise<User> {
     try {
+      // console.log(Object.values(user)[0]);
+
       const connection = await db.connect();
       const sql = `SELECT id, first_name, last_name, email, mobile, city FROM users 
       WHERE id=($1)`;

@@ -10,6 +10,7 @@
     "test": "npm run build && jasmine",
     "migration:run": "db-migrate up",
     "migration:down": "db-migrate down",
+    "migration:reset": "db-migrate reset",
     "format": "prettier --write src/**/*.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix"

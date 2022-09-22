@@ -1,0 +1,25 @@
+-- Create artists Table --
+CREATE TABLE artists (
+    id SERIAL PRIMARY KEY,
+    gender VARCHAR(20),
+    age INT NOT NULL,
+    qualification VARCHAR(150),
+    categories_id INT NOT NULL UNIQUE,
+    yearExp VARCHAR(50) NOT NULL,
+    certification VARCHAR(255),
+    brand_name VARCHAR(255) NOT NULL,
+    local_gallery boolean NOT NULL,
+    made_courses boolean NOT NULL,
+    avatar VARCHAR(255),
+    facebook VARCHAR(255) NOT NULL,
+    instagram VARCHAR(255),
+    youtube VARCHAR(255),
+    website VARCHAR(255),
+    users_id INT NOT NULL UNIQUE,
+    artist boolean NOT NULL DEFAULT true,
+    preview boolean DEFAULT false,
+    approved boolean DEFAULT false,
+    FOREIGN KEY(categories_id) REFERENCES categories(id),
+    FOREIGN KEY(users_id) REFERENCES users(id),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

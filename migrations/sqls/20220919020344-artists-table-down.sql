@@ -1,2 +1,2 @@
--- Drop the Artist database --
-DROP TABLE artists;
+-- Drop table Gategories --
+DROP TABLE categories;

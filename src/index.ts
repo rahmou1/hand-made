@@ -2,7 +2,8 @@ import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import RateLimit from 'express-rate-limit';
-import routes from './routes';
+import users from './routes/users';
+import artists from './routes/artists';
 import errorMiddleware from './middleware/error.middleware';
 import config from './config';
 import bodyParser from 'body-parser';
@@ -32,7 +33,9 @@ app.use(
 );
 
 // User routes
-app.use('/', routes);
+app.use('/', users);
+// User routes
+app.use('/', artists);
 
 // add route
 app.get('/', (req: Request, res: Response) => {

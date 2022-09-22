@@ -26,12 +26,12 @@ export const create = async (
 
 //* Get Many Users
 export const getMany = async (
-  _: Request,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const users = await userModel.getMany();
+    const users = await userModel.getMany(req);
     res.json({
       status: 'true',
       data: users,
@@ -49,7 +49,13 @@ export const getOne = async (
   next: NextFunction
 ) => {
   try {
-    const user = await userModel.getOne(req.params.id as unknown as string);
+    const userInfo = req.body.user;
+    // console.log(req.body.user);
+
+    const user = await userModel.getOne(
+      req.params.id as unknown as string,
+      userInfo
+    );
     res.json({
       status: 'true',
       data: user,
