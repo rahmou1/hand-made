@@ -55,6 +55,7 @@ class UserModel {
   async getOne(id: string, user: User): Promise<User> {
     try {
       // console.log(Object.values(user)[0]);
+      console.log(user);
 
       const connection = await db.connect();
       const sql = `SELECT id, first_name, last_name, email, mobile, city FROM users 

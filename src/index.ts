@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import RateLimit from 'express-rate-limit';
 import users from './routes/users';
 import artists from './routes/artists';
+import categories from './routes/category';
 import errorMiddleware from './middleware/error.middleware';
 import config from './config';
 import bodyParser from 'body-parser';
@@ -36,7 +37,8 @@ app.use(
 app.use('/', users);
 // User routes
 app.use('/', artists);
-
+// Categories routes
+app.use('/', categories);
 // add route
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({
