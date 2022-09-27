@@ -5,6 +5,7 @@ import RateLimit from 'express-rate-limit';
 import users from './routes/users';
 import artists from './routes/artists';
 import categories from './routes/category';
+import products from './routes/products';
 import errorMiddleware from './middleware/error.middleware';
 import config from './config';
 import bodyParser from 'body-parser';
@@ -39,6 +40,8 @@ app.use('/', users);
 app.use('/', artists);
 // Categories routes
 app.use('/', categories);
+// Products routes
+app.use('/', products);
 // add route
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({

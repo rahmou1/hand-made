@@ -6,14 +6,14 @@ class ArtistModel {
     try {
       // Open connection
       const connection = await db.connect();
-      const sql = `INSERT INTO artists (gender, age, qualification, category, yearExp, certification, brand_name, local_gallery, made_courses, avatar, facebook, instagram, youtube, website, users_id)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING id, gender, age, qualification, category, yearExp, certification, brand_name, local_gallery, made_courses, avatar, facebook, instagram, youtube, website, users_id`;
+      const sql = `INSERT INTO artists (gender, age, qualification, categories_id, yearExp, certification, brand_name, local_gallery, made_courses, avatar, facebook, instagram, youtube, website, users_id)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING id, gender, age, qualification, categories_id, yearExp, certification, brand_name, local_gallery, made_courses, avatar, facebook, instagram, youtube, website, users_id`;
       // run query
       const result = await connection.query(sql, [
         a.gender,
         a.age,
         a.qualification,
-        a.category,
+        a.categories_id,
         a.yearExp,
         a.certification,
         a.brand_name,
@@ -63,13 +63,13 @@ class ArtistModel {
     try {
       const connection = await db.connect();
       const sql = `UPDATE artists
-      SET gender=$1, age=$2, qualification=$3, category=$4, yearExp=$5, certification=$6, brand_name=$7, local_gallery=$8, made_courses=$9, avatar=$10, facebook=$11, instagram=$12, youtube=$13, website=$14 where id=$15
-      RETURNING id, gender, age, qualification, category, yearExp, certification, brand_name, local_gallery, made_courses, avatar, facebook, instagram, youtube, website`;
+      SET gender=$1, age=$2, qualification=$3, categories_id=$4, yearExp=$5, certification=$6, brand_name=$7, local_gallery=$8, made_courses=$9, avatar=$10, facebook=$11, instagram=$12, youtube=$13, website=$14 where id=$15
+      RETURNING id, gender, age, qualification, categories_id, yearExp, certification, brand_name, local_gallery, made_courses, avatar, facebook, instagram, youtube, website`;
       const result = await connection.query(sql, [
         a.gender,
         a.age,
         a.qualification,
-        a.category,
+        a.categories_id,
         a.yearExp,
         a.certification,
         a.brand_name,

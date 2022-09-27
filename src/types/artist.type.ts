@@ -3,7 +3,7 @@ type Artist = {
   gender: string;
   age: number;
   qualification: string;
-  category: string;
+  categories_id: number;
   yearExp: string;
   certification: string;
   brand_name: string;
