@@ -6,6 +6,7 @@ import users from './routes/users';
 import artists from './routes/artists';
 import categories from './routes/category';
 import products from './routes/products';
+import colors from './routes/color';
 import errorMiddleware from './middleware/error.middleware';
 import config from './config';
 import bodyParser from 'body-parser';
@@ -42,6 +43,8 @@ app.use('/', artists);
 app.use('/', categories);
 // Products routes
 app.use('/', products);
+// Colors Routes
+app.use('/', colors);
 // add route
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({

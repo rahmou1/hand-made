@@ -1,12 +1,16 @@
 import { Router } from 'express';
 import * as controllers from '../../controllers/products.controllers';
+import authenticationMiddleware from '../../middleware/authentication.middleware';
 
 const products = Router();
 
-products.route('/').get(controllers.getMany).post(controllers.create);
+products
+  .route('/')
+  .get(authenticationMiddleware, controllers.getMany)
+  .post(authenticationMiddleware, controllers.create);
 products
   .route('/:id')
-  .get(controllers.getOne)
-  .patch(controllers.updateOne)
-  .delete(controllers.deleteOne);
+  .get(authenticationMiddleware, controllers.getOne)
+  .patch(authenticationMiddleware, controllers.updateOne)
+  .delete(authenticationMiddleware, controllers.deleteOne);
 export default products;

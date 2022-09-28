@@ -4,6 +4,7 @@ CREATE TABLE products (
     name VARCHAR(150) NOT NULL UNIQUE,
     description VARCHAR(250) NOT NULL,
     price INT NOT NULL,
+    deposit INT NOT NULL,
     qty INT NOT NULL DEFAULT 1,
     picture VARCHAR(255) NOT NULL UNIQUE,
     time_number INT NOT NULL,

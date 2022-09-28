@@ -3,6 +3,7 @@ type Product = {
   name: string;
   description: string;
   price: number;
+  deposit: number;
   qty: number;
   picture: string;
   time_number: number;
