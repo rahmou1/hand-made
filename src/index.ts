@@ -10,7 +10,7 @@ import colors from './routes/color';
 import errorMiddleware from './middleware/error.middleware';
 import config from './config';
 import bodyParser from 'body-parser';
-const PORT = config.port || 3000;
+const PORT = config.port || 5000;
 // Create instance server
 
 const app: Application = express();
@@ -46,6 +46,8 @@ app.use('/', products);
 // Colors Routes
 app.use('/', colors);
 // add route
+//! if i want to get data with react by this backend need to set the headers
+// res.set('Access-Control-Allow-Origin', '*')
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({
     message: 'Welcome sir iam on and ready to serve you 💪',
@@ -61,7 +63,7 @@ app.use((_req: Request, res: Response) => {
 });
 
 // Start Express Server
-app.listen(PORT, () => {
+app.listen(5000, () => {
   console.log(`Server is now running on port : ${PORT}`);
 });
 
